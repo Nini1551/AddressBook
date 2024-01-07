@@ -13,6 +13,8 @@ class AddressBook:
         return annuaire
 
     def add_contact(self, contact: Contact):
+        if self.get_contact(contact.name):
+            raise ValueError('There is already a contact with that name')
         self.contacts.append(contact)
 
     def get_contact(self, name: str) -> Contact | None:

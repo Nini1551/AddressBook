@@ -2,6 +2,7 @@ from lib.contact import Contact
 from lib.address_book import AddressBook
 
 
+
 def main():
     address_book = AddressBook()
 
@@ -16,10 +17,20 @@ def main():
         choice = input("Choisissez une option (1-5) : ")
 
         if choice == "1":
-            name = input("Nom du contact : ")
-            email = input("Email du contact : ")
+            try:
+                name = input("Nom du contact : ")
+            except ValueError:
+                print("Nom invalide !\n")
+                continue
+            try:
+                email = input("Email du contact : ")
+            except ValueError:
+                print("Email invalide !\n")
             new_contact = Contact(name, email)
-            address_book.add_contact(new_contact)
+            try:
+                address_book.add_contact(new_contact)
+            except ValueError:
+                print("Contact déjà existant dans l'annuaire !\n")
             print(f"Contact '{name}' ajouté avec succès!")
 
         elif choice == "2":
