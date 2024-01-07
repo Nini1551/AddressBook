@@ -23,7 +23,7 @@ def main():
             print(f"Contact '{name}' ajouté avec succès!")
 
         elif choice == "2":
-            print(f'\n{address_book}')
+            print(f'\n{address_book}\n')
 
         elif choice == "3":
             search_name = input("Entrez le nom du contact à rechercher: ")

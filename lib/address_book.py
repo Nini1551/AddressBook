@@ -6,9 +6,11 @@ class AddressBook:
         self.contacts = []
 
     def __str__(self) -> str:
+        if len(self.contacts) == 0:
+            return 'Annuaire vide'
         annuaire = "Contacts dans l'annuaire:\n"
         annuaire += '\n'.join(map(lambda x: str(x), self.contacts))
-        return annuaire + '\n'
+        return annuaire
 
     def add_contact(self, contact: Contact):
         self.contacts.append(contact)
@@ -23,3 +25,6 @@ class AddressBook:
         contact = self.get_contact(name)
         if contact:
             self.contacts.remove(contact)
+
+    def set_empty(self):
+        self.contacts = []
