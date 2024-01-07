@@ -1,0 +1,25 @@
+from lib.contact import Contact
+
+
+class AddressBook:
+    def __init__(self):
+        self.contacts = []
+
+    def __str__(self) -> str:
+        annuaire = "Contacts dans l'annuaire:\n"
+        annuaire += '\n'.join(map(lambda x: str(x), self.contacts))
+        return annuaire + '\n'
+
+    def add_contact(self, contact: Contact):
+        self.contacts.append(contact)
+
+    def get_contact(self, name: str) -> Contact | None:
+        for contact in self.contacts:
+            if contact.name == name:
+                return contact
+        return None
+
+    def remove_contact(self, name: str):
+        contact = self.get_contact(name)
+        if contact:
+            self.contacts.remove(contact)
