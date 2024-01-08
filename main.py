@@ -9,23 +9,6 @@ Il peut quitter le programme.
 from lib.contact import Contact
 from lib.address_book import AddressBook
 
-
-def verify_value(func):
-    def wrapper(*args, **kwargs):
-        try:
-            return func(*args, **kwargs)
-        except ValueError:
-            print("Donnée invalide")
-    return wrapper
-
-@verify_value
-def get_data(input_msg, is_valid_func):
-    data = input(input_msg)
-    if is_valid_func(data):
-        return data
-
-get_name = lambda input_msg: get_data(input_msg, Contact.is_valid_name)
-
 def main():
     address_book = AddressBook()
 
@@ -40,16 +23,13 @@ def main():
         choice = input("Choisissez une option (1-5) : ")
 
         if choice == "1":
+            name = input("Nom du contact : ")
+            email = input("Email du contact : ")
             try:
-                name = input("Nom du contact : ")
-            except ValueError:
-                print("Nom invalide !\n")
+                new_contact = Contact(name, email)
+            except ValueError as error:
+                print(f'Données invalides : {error}')
                 continue
-            try:
-                email = input("Email du contact : ")
-            except ValueError:
-                print("Email invalide !\n")
-            new_contact = Contact(name, email)
             try:
                 address_book.add_contact(new_contact)
             except IndexError:
@@ -57,7 +37,7 @@ def main():
             print(f"Contact '{name}' ajouté avec succès!")
 
         elif choice == "2":
-            print(f'\n{address_book}\n')
+            print(f'\n{address_book.get_contacts()}\n')
 
         elif choice == "3":
             search_name = input("Entrez le nom du contact à rechercher: ")
