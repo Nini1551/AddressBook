@@ -124,11 +124,32 @@ Teste l'ajout d'un non-contact
 
     def test_str(self):
         """
-Teste la forme de chaïne de caractères
+Teste la forme sous chaîne de caractères.
         """
-        self.assertEqual(str(self.address_book), "Annuaire vide")
+        self.address_book.add_contact(self.contact1)
         self.address_book.add_contact(self.contact2)
-        self.assertEqual(str(self.address_book), f"Contacts dans l'annuaire:\n{self.contact2}")
+        self.address_book.add_contact(self.contact3)
+        contacts = [self.contact1, self.contact2, self.contact3]
+        self.assertEqual(str(self.address_book), str(contacts))
+
+    def test_repr(self):
+        """
+Teste la représentation.
+        """
+        self.address_book.add_contact(self.contact1)
+        self.address_book.add_contact(self.contact2)
+        self.address_book.add_contact(self.contact3)
+        contacts = [self.contact1, self.contact2, self.contact3]
+        repr_contacts = f'<AddressBook : {contacts}>'
+        self.assertEqual(repr(self.address_book), repr_contacts)
+
+    def test_get_contacts(self):
+        """
+Teste la méthode get_contacts
+        """
+        self.assertEqual(self.address_book.get_contacts(), "Annuaire vide")
+        self.address_book.add_contact(self.contact2)
+        self.assertEqual(self.address_book.get_contacts(), f"Contacts dans l'annuaire:\n{self.contact2}")
 
 
     def test_get_contact_existing(self):
@@ -167,6 +188,20 @@ Teste la suppression d'un contact non-existant.
         self.address_book.remove_contact("chat")
         self.assertEqual(len(self.address_book.contacts), 1)
         self.address_book.set_empty()
+
+    def test_set_empty(self):
+        """
+Teste la réinitialisation de l'annuaire
+        """
+        self.assertEqual(len(self.address_book.contacts), 0)
+        self.address_book.add_contact(self.contact1)
+        self.address_book.add_contact(self.contact2)
+        self.address_book.add_contact(self.contact3)
+        self.address_book.add_contact(self.contact4)
+        self.assertEqual(len(self.address_book.contacts), 4)
+        self.address_book.set_empty()
+        self.assertEqual(len(self.address_book.contacts), 0)
+
 
 
 if __name__ == "__main__":

@@ -65,7 +65,7 @@ POST : Le nom du contact et le mail du contact séparés par ' - '.
         """
 Représentation du contact
 PRE : -
-POST : '<Contact **contact**> où contact est la forme sous chaîne de caractères du contact.
+POST : '<Contact : **contact**>' où contact est la forme sous chaîne de caractères du contact.
         """
         return f'<Contact : {self}>'
 

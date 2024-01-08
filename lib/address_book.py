@@ -22,7 +22,23 @@ POST : Initialise les attributs suivants :
 
     def __str__(self) -> str:
         """
-Forme sous chaîne de caractères de l'annuaire téléphonique.
+Forme sous chaîne de caractères.
+PRE : -
+POST : La forme sous chaîne de caractères de la liste de contacts
+        """
+        return str(self.contacts)
+
+    def __repr__(self) -> str:
+        """
+Représentation de l'annuaire mail.
+PRE : -
+POST : '<AddressBook : **contacts**>' où contacts est la forme sous chaîne de caractères de l'annuaire.
+        """
+        return f'<AddressBook : {self}>'
+
+    def get_contacts(self) -> str:
+        """
+Fournit l'annuaire mail des contacts.
 PRE : -
 POST : Indique si l'annuaire est vide.
        'Contact dans l'annuaire :' suivi d'un passage à la ligne
