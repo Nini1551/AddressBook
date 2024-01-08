@@ -8,7 +8,7 @@ class Contact:
     """
 Contact représenté par son nom et son email.
     """
-    email_regex = r"^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z][a-zA-Z0-9.-]*\.[a-zA-Z]{2,}$"
+    EMAIL_REGEX = r"^[a-zA-Z][a-zA-Z0-9._%+-]*@[a-zA-Z][a-zA-Z0-9.-]*\.[a-zA-Z]{2,}$"
 
     def __init__(self, name: str, email: str):
         """
@@ -76,7 +76,7 @@ POST : Renvoie si la chaïne de caractères est une adresse mail valide.
        - La partie précédente est suivie d'un point.
        - Il finit par au moins deux lettres.
         """
-        return bool(re.match(Contact.email_regex, email))
+        return bool(re.match(Contact.EMAIL_REGEX, email))
 
     def __str__(self) -> str:
         """
