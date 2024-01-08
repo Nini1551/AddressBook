@@ -80,6 +80,27 @@ Teste l'égalité entre 2 contacts.
         self.assertFalse(self.contact == contact_other )
         self.assertTrue(self.contact == contact_same)
 
+    def test_is_valid_name(self):
+        """
+Teste la méthode is_valid_name
+        """
+        self.assertFalse(Contact.is_valid_name(''))
+        self.assertTrue(Contact.is_valid_name(' '))
+        self.assertTrue(Contact.is_valid_name('Louis'))
+
+    def test_is_valid_email(self):
+        """
+Teste la méthode is_valid_email
+        """
+        self.assertFalse(Contact.is_valid_email(''))
+        self.assertFalse(Contact.is_valid_email('louis'))
+        self.assertFalse(Contact.is_valid_email('1ouis@mail.com'))
+        self.assertFalse(Contact.is_valid_email('louis@.com'))
+        self.assertFalse(Contact.is_valid_email('louis@mail.c'))
+        self.assertFalse(Contact.is_valid_email('louis@bobo.co3'))
+        self.assertTrue(Contact.is_valid_email('a@b.fr'))
+        self.assertTrue(Contact.is_valid_email('martin@gmail.be'))
+
 class TestAddressBook(unittest.TestCase):
     """
 Teste la classe AddressBook

@@ -53,6 +53,31 @@ POST : Renvoie l'adresse email du contact.
         """
         return self.__email
 
+    @staticmethod
+    def is_valid_name(name) -> bool:
+        """
+Indique si la valeur est un nom valide
+PRE : - name : une chaîne de caractères
+POST : Renvoie si la chaîne de caractères est un nom valide.
+       Un nom est valide s'il comporte au moins un caractère.
+        """
+        return bool(name)
+
+    @staticmethod
+    def is_valid_email(email) -> bool:
+        """
+Indique si la valeur est une adresse mail valide.
+PRE : - email : une chaîne de caractères
+POST : Renvoie si la chaïne de caractères est une adresse mail valide.
+       Un email est valide si :
+       - Il commence par au moins une lettre suivie de n'importe quels caractères non-arobase.
+       - La partie de départ est suivi d'une arobase.
+       - L'arobase est suivi d'un moins une lettre suivie de lettres, de chiffres, de points ou de trémas
+       - La partie précédente est suivie d'un point.
+       - Il finit par au moins deux lettres.
+        """
+        return bool(re.match(Contact.email_regex, email))
+
     def __str__(self) -> str:
         """
 Forme sous chaîne de caractères du contact
@@ -76,10 +101,3 @@ PRE : - other : un autre contact
 POST : Deux contacts sont égaux si leur forme sous chaîne de caractères sont les memes.
         """
         return str(self) == str(other)
-
-    @staticmethod
-    def is_valid_name(name) -> bool:
-        return len(name) > 0
-
-    def is_valid_email(self, email) -> bool:
-        return bool(re.match(self.email_regex, email))
