@@ -26,10 +26,10 @@ POST : Initialise les attributs suivants :
        - email : adresse email du contact
 RAISES : - ValueError : Si le nom ou le mail est invalide.
         """
-        if len(name) < 1:
+        if not self.is_valid_name(name):
             raise ValueError("Name cannot be empty")
 
-        if not re.match(self.email_regex, email):
+        if not self.is_valid_email(email):
             raise ValueError("Email is not valid")
 
         self.__name = name
@@ -76,3 +76,10 @@ PRE : - other : un autre contact
 POST : Deux contacts sont égaux si leur forme sous chaîne de caractères sont les memes.
         """
         return str(self) == str(other)
+
+    @staticmethod
+    def is_valid_name(name) -> bool:
+        return len(name) > 0
+
+    def is_valid_email(self, email) -> bool:
+        return bool(re.match(self.email_regex, email))

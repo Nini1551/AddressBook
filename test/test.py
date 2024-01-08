@@ -30,9 +30,9 @@ Teste la propriété name en cas de nom vide
         """
 Teste la propriété email.
         """
-        contact_test = Contact("Louis", 'a@b.fr')
+        limit_contact = Contact("Louis", 'a@b.fr')
         self.assertEqual(self.contact.email, "louis@hotmail.com")
-        self.assertEqual(contact_test.email, "a@b.fr")
+        self.assertEqual(limit_contact.email, "a@b.fr")
 
     def test_invalid_email(self):
         """

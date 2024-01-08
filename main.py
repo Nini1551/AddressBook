@@ -10,6 +10,22 @@ from lib.contact import Contact
 from lib.address_book import AddressBook
 
 
+def verify_value(func):
+    def wrapper(*args, **kwargs):
+        try:
+            return func(*args, **kwargs)
+        except ValueError:
+            print("Donnée invalide")
+    return wrapper
+
+@verify_value
+def get_data(input_msg, is_valid_func):
+    data = input(input_msg)
+    if is_valid_func(data):
+        return data
+
+get_name = lambda input_msg: get_data(input_msg, Contact.is_valid_name)
+
 def main():
     address_book = AddressBook()
 
