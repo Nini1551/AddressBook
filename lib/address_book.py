@@ -46,8 +46,8 @@ POST : Indique si l'annuaire est vide.
         """
         if len(self.contacts) == 0:
             return 'Annuaire vide'
-        annuaire = "Contacts dans l'annuaire:\n"
-        annuaire += '\n'.join(map(lambda x: str(x), self.contacts))
+        annuaire = "Contacts dans l'annuaire:\n * "
+        annuaire += '\n * '.join(map(lambda x: str(x), self.contacts))
         return annuaire
 
     def add_contact(self, contact: Contact):
