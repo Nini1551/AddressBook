@@ -170,7 +170,7 @@ Teste la méthode get_contacts
         """
         self.assertEqual(self.address_book.get_contacts(), "Annuaire vide")
         self.address_book.add_contact(self.contact2)
-        self.assertEqual(self.address_book.get_contacts(), f"Contacts dans l'annuaire:\n{self.contact2}")
+        self.assertEqual(self.address_book.get_contacts(), f"Contacts dans l'annuaire:\n * {self.contact2}")
 
 
     def test_get_contact_existing(self):
