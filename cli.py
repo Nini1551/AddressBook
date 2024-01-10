@@ -45,33 +45,32 @@ class CLIApp:
         name = input("Nom du contact : ")
         email = input("Email du contact : ")
         try:
-            new_contact = Contact(name, email)
-            self.address_book.add_contact(new_contact)
+            self.address_book.add_contact(name, email)
             print(f"Contact '{name}' ajouté avec succès!")
         except ValueError as error:
-            print(f'Données invalides : {error}')
+            print(f'Données invalides : "{error}"')
         except IndexError:
             print("Contact déjà existant dans l'annuaire !\n")
 
     def display_contacts(self):
-        print(f'\n{self.address_book.get_contacts()}\n')
+        print(f'\n{self.address_book.get_contacts()}')
 
     def search_contact(self):
         search_name = input("Entrez le nom du contact à rechercher: ")
         found_contact = self.address_book.get_contact(search_name)
         if found_contact:
-            print(f"\nContact trouvé pour {search_name}: {found_contact}\n")
+            print(f"\nContact trouvé pour {search_name}: {found_contact}")
         else:
-            print(f"\nAucun contact trouvé pour '{search_name}'\n")
+            print(f"\nAucun contact trouvé pour '{search_name}'")
 
     def delete_contact(self):
         delete_name = input("\nEntrez le nom du contact à supprimer: ")
         found_contact = self.address_book.get_contact(delete_name)
         if found_contact:
             self.address_book.remove_contact(delete_name)
-            print(f"Contact '{delete_name}' supprimé avec succès!\n")
+            print(f"Contact '{delete_name}' supprimé avec succès!")
         else:
-            print(f"Aucun contact trouvé pour' {delete_name}'\n")
+            print(f"Aucun contact trouvé pour' {delete_name}'")
 
     def quit(self):
         print("\nAu revoir!")

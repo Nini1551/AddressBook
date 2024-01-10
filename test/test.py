@@ -117,13 +117,13 @@ Teste la classe AddressBook
 Teste l'ajout d'un contact
         """
         self.assertEqual(len(self.address_book.contacts), 0)
-        self.address_book.add_contact(self.contact1)
+        self.address_book.add_contact(self.contact1.name, self.contact1.email)
         self.assertEqual(len(self.address_book.contacts), 1)
-        self.address_book.add_contact(self.contact2)
+        self.address_book.add_contact(self.contact2.name, self.contact2.email)
         self.assertEqual(len(self.address_book.contacts), 2)
-        self.address_book.add_contact(self.contact3)
+        self.address_book.add_contact(self.contact3.name, self.contact3.email)
         self.assertEqual(len(self.address_book.contacts), 3)
-        self.address_book.add_contact(self.contact4)
+        self.address_book.add_contact(self.contact4.name, self.contact4.email)
         self.assertEqual(len(self.address_book.contacts), 4)
         self.address_book.set_empty()
 
@@ -131,25 +131,18 @@ Teste l'ajout d'un contact
         """
 Teste l'ajout d'un contact déjà existant.
         """
-        self.address_book.add_contact(self.contact1)
+        self.address_book.add_contact(self.contact1.name, self.contact1.email)
         with self.assertRaises(IndexError):
             same_name_contact = Contact("Martin CARPENTIER", "bubu@oui.be")
-            self.address_book.add_contact(same_name_contact)
-
-    def test_add_noncontact(self):
-        """
-Teste l'ajout d'un non-contact
-        """
-        with self.assertRaises(ValueError):
-            self.address_book.add_contact(2)
+            self.address_book.add_contact(same_name_contact.name, same_name_contact.email)
 
     def test_str(self):
         """
 Teste la forme sous chaîne de caractères.
         """
-        self.address_book.add_contact(self.contact1)
-        self.address_book.add_contact(self.contact2)
-        self.address_book.add_contact(self.contact3)
+        self.address_book.add_contact(self.contact1.name, self.contact1.email)
+        self.address_book.add_contact(self.contact2.name, self.contact2.email)
+        self.address_book.add_contact(self.contact3.name, self.contact3.email)
         contacts = [self.contact1, self.contact2, self.contact3]
         self.assertEqual(str(self.address_book), str(contacts))
 
@@ -157,10 +150,10 @@ Teste la forme sous chaîne de caractères.
         """
 Teste la représentation.
         """
-        self.address_book.add_contact(self.contact1)
-        self.address_book.add_contact(self.contact2)
-        self.address_book.add_contact(self.contact3)
-        contacts = [self.contact1, self.contact2, self.contact3]
+        self.address_book.add_contact(self.contact1.name, self.contact1.email)
+        self.address_book.add_contact(self.contact4.name, self.contact4.email)
+        self.address_book.add_contact(self.contact3.name, self.contact3.email)
+        contacts = [self.contact1, self.contact4, self.contact3]
         repr_contacts = f'<AddressBook : {contacts}>'
         self.assertEqual(repr(self.address_book), repr_contacts)
 
@@ -169,7 +162,7 @@ Teste la représentation.
 Teste la méthode get_contacts
         """
         self.assertEqual(self.address_book.get_contacts(), "Annuaire vide")
-        self.address_book.add_contact(self.contact2)
+        self.address_book.add_contact(self.contact2.name, self.contact2.email)
         self.assertEqual(self.address_book.get_contacts(), f"Contacts dans l'annuaire:\n * {self.contact2}")
 
 
@@ -177,7 +170,7 @@ Teste la méthode get_contacts
         """
 Teste l'existence d'un contact dans l'annuaire.
         """
-        self.address_book.add_contact(self.contact1)
+        self.address_book.add_contact(self.contact1.name, self.contact1.email)
         result = self.address_book.get_contact("Martin CARPENTIER")
         self.assertEqual(result, self.contact1)
         self.address_book.set_empty()
@@ -193,8 +186,8 @@ Teste la non-existence d'un contact dans l'annuaire.
         """
 Teste la suppression d'un contact.
         """
-        self.address_book.add_contact(self.contact1)
-        self.address_book.add_contact(self.contact2)
+        self.address_book.add_contact(self.contact1.name, self.contact1.email)
+        self.address_book.add_contact(self.contact2.name, self.contact2.email)
         self.assertEqual(len(self.address_book.contacts), 2)
         self.address_book.remove_contact("Eve SOURIS")
         self.assertEqual(len(self.address_book.contacts), 1)
@@ -204,7 +197,7 @@ Teste la suppression d'un contact.
         """
 Teste la suppression d'un contact non-existant.
         """
-        self.address_book.add_contact(self.contact1)
+        self.address_book.add_contact(self.contact1.name, self.contact1.email)
         self.assertEqual(len(self.address_book.contacts), 1)
         self.address_book.remove_contact("chat")
         self.assertEqual(len(self.address_book.contacts), 1)
@@ -215,10 +208,10 @@ Teste la suppression d'un contact non-existant.
 Teste la réinitialisation de l'annuaire
         """
         self.assertEqual(len(self.address_book.contacts), 0)
-        self.address_book.add_contact(self.contact1)
-        self.address_book.add_contact(self.contact2)
-        self.address_book.add_contact(self.contact3)
-        self.address_book.add_contact(self.contact4)
+        self.address_book.add_contact(self.contact1.name, self.contact1.email)
+        self.address_book.add_contact(self.contact2.name, self.contact2.email)
+        self.address_book.add_contact(self.contact3.name, self.contact3.email)
+        self.address_book.add_contact(self.contact4.name, self.contact4.email)
         self.assertEqual(len(self.address_book.contacts), 4)
         self.address_book.set_empty()
         self.assertEqual(len(self.address_book.contacts), 0)

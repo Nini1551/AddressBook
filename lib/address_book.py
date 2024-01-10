@@ -50,20 +50,19 @@ POST : Indique si l'annuaire est vide.
         annuaire += '\n * '.join(map(lambda x: str(x), self.contacts))
         return annuaire
 
-    def add_contact(self, contact: Contact):
+    def add_contact(self, name: str, email: str):
         """
-Ajoute un contact dans l'annuaire.
-PRE : - contact : un contact valide
+Créer et ajoute un contact dans l'annuaire.
+PRE : - name : nom d'un contact avec au moins un caractère
+      - email : email valide
 POST : Ajoute le contact dans l'annuaire à la fin de celui-ci.
-RAISES : - ValueError : la valeur ajoutée n'est pas un contact.
-         - IndexError : le contact a un nom déjà présent dans l'annuaire.
+RAISES : - ValueError : le nom ou l'email du contact créé ne sont pas valides.
+         - IndexError : il y a déjà un contact avec ce nom présent dans l'annuaire.
         """
-        if not isinstance(contact, Contact):
-            raise ValueError('Value added is not a contact')
-
-        if self.get_contact(contact.name):
+        if self.get_contact(name):
             raise IndexError('There is already a contact with that name')
 
+        contact = Contact(name, email)
         self.contacts.append(contact)
 
     def get_contact(self, name: str) -> Contact | None:
