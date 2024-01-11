@@ -2,7 +2,7 @@
 Annuaire mail regroupant des contacts.
 Les contacts sont représentés par leur nom et leur email.
 """
-from lib.contact import Contact
+from .contact import Contact
 
 
 class AddressBook:
@@ -60,7 +60,7 @@ RAISES : - ValueError : le nom ou l'email du contact créé ne sont pas valides.
          - IndexError : il y a déjà un contact avec ce nom présent dans l'annuaire.
         """
         if self.get_contact(name):
-            raise IndexError('There is already a contact with that name')
+            raise IndexError('There is already a contact with that name.')
 
         contact = Contact(name, email)
         self.contacts.append(contact)

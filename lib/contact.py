@@ -27,10 +27,10 @@ POST : Initialise les attributs suivants :
 RAISES : - ValueError : Si le nom ou le mail est invalide.
         """
         if not self.is_valid_name(name):
-            raise ValueError("Name cannot be empty")
+            raise ValueError("Name cannot be empty.")
 
         if not self.is_valid_email(email):
-            raise ValueError("Email is not valid")
+            raise ValueError("Email is not valid.")
 
         self.__name = name
         self.__email = email
